@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 
 function Form({ input, setInput, todos, setTodos, edit, setEdit }) {
@@ -7,6 +8,7 @@ function Form({ input, setInput, todos, setTodos, edit, setEdit }) {
       todo.id === id ? { title, id, completed: !completed } : todo
     );
     setTodos(newTodo);
+    toast.success("Sửa công việc thành công");
     setEdit("");
   };
 
@@ -26,11 +28,11 @@ function Form({ input, setInput, todos, setTodos, edit, setEdit }) {
     event.preventDefault();
     if (!edit) {
       setTodos([...todos, { id: uuidv4(), title: input, completed: false }]);
+      toast.success("Thêm công việc thành công");
       setInput("");
     } else {
       updateTodo(input, edit.id, (edit.completed = true));
     }
-    console.log(todos);
   };
 
   return (

@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 
 function TodoList({ todos, setTodos, setEdit }) {
   const handleComplete = (todo) => {
@@ -15,10 +16,12 @@ function TodoList({ todos, setTodos, setEdit }) {
   const handleEdit = ({ id }) => {
     const findTodo = todos.find((todo) => todo.id === id);
     setEdit(findTodo);
+    toast.success("Sửa công việc thành công");
   };
 
   const handleDelete = ({ id }) => {
     setTodos(todos.filter((todo) => todo.id !== id));
+    toast.success("Xóa công việc thành công");
   };
 
   return (

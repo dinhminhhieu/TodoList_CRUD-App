@@ -3,6 +3,8 @@ import "./App.css";
 import Header from "./components/Header";
 import Form from "./components/Form";
 import TodoList from "./components/TodoList";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const initialState = JSON.parse(localStorage.getItem("todos")) || [];
@@ -15,26 +17,43 @@ function App() {
   }, [todos]);
 
   return (
-    <div className="container">
-      <div className="app-wrapper">
-        <div>
-          <Header />
-        </div>
-        <div>
-          <Form
-            input={input}
-            setInput={setInput}
-            todos={todos}
-            setTodos={setTodos}
-            edit={edit}
-            setEdit={setEdit}
-          />
-        </div>
-        <div>
-          <TodoList todos={todos} setTodos={setTodos} setEdit={setEdit} />
+    <>
+      <div className="container">
+        <div className="app-wrapper">
+          <div>
+            <Header />
+          </div>
+          <div>
+            <Form
+              input={input}
+              setInput={setInput}
+              todos={todos}
+              setTodos={setTodos}
+              edit={edit}
+              setEdit={setEdit}
+            />
+          </div>
+          <div>
+            <TodoList todos={todos} setTodos={setTodos} setEdit={setEdit} />
+          </div>
         </div>
       </div>
-    </div>
+
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      {/* Same as */}
+      <ToastContainer />
+    </>
   );
 }
 
